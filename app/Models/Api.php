@@ -30,7 +30,7 @@ class Api extends Model
     public function obtenerProducto($id){
         $response = $this->client->request('GET', "productos/$id");
         $data = json_decode($response->getBody());
-        return $data->stock;
+        return $data;
         // $client->request('GET', '/posts');
         // $client->request('POST', '/posts', ['title' => 'foo']);
         // $client->request('PUT', '/posts/:id', ['title' => 'bar']);

@@ -13,16 +13,14 @@
                         <h2 class="hero-promociones">Promociones</h2>
                     </div>
                 </div>
-
-
             </div>
 
         </div>
     </main>
 
     <a href="{{route('AllProducts')}}">Mostrar todos los productos</a>
-    <a href="{{route('CategoryProducts',2)}}">Mostrar todos por Categoria</a>
-    <a href="{{route('OneProduct', 5)}}">Mostrar detalles de un producto</a>
+    <a href="{{route('CategoryProducts',3)}}">Mostrar todos por Categoria</a>
+    <a href="{{route('OneProduct', 262)}}">Mostrar detalles de un producto</a>
     <a href="{{route('PlaceOrder')}}">Registrar pedido</a>
 
 @endsection
