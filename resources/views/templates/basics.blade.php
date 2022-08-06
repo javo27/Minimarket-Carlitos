@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-
+   
     <link rel="stylesheet" href="{{asset('../resources/css/app.css')}}">
 </head>
 <body>
@@ -55,6 +55,10 @@
                         </svg>
                     </a>
                 </div>
+                {{-- <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5">
+                    <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
+                    <p class="mb-0 text-capitalize"><span id="item-count">0 </span> items - $<span class="item-total">00.00</span></p>
+                </div> --}}
                 <div class="cart">
                     <a onclick="opencloseCartPopup()" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
@@ -64,64 +68,30 @@
                             <circle cx="10.5" cy="19.5" r="1.5" fill="white" />
                             <circle cx="17.5" cy="19.5" r="1.5" fill="white" />
                         </svg>
+                        <span id="item-count">0 </span>
                     </a>
                     <div id="cart_popup" class="cart-popup none">
                         <h3>Mi Pedido</h3>
                         <div class="cart-item">
                             <div class="cart-item-left">
-                                <div class="counter">
-                                    <p>-</p>
-                                    <p>1</p>
-                                    <p>+</p>
+                                <div class="cantidad">
+                                    <p class="cantidad-elegida">0</p>
                                 </div>
                                 <div class="price">
-                                    S/. 51.80
+                                    S/. <span id="cart-item-price" class="cart-item-price" class="mb-0">51.80</span>
                                 </div>
                             </div>
                             <div class="cart-item-right">
                                 <p class="product-title">Combo 02 Hamburguesa Parrillera Tambo + 01 Coca Cola 1 Lt</p>
-                                <svg class="delete" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="#f25c05" d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"/></svg>
-                            </div>
-                        </div>
-                        <div class="cart-item">
-                            <div class="cart-item-left">
-                                <div class="counter">
-                                    <p>-</p>
-                                    <p>1</p>
-                                    <p>+</p>
-                                </div>
-                                <div class="price">
-                                    S/. 51.80
-                                </div>
-                            </div>
-                            <div class="cart-item-right">
-                                <p class="product-title">Combo 02 Hamburguesa Parrillera Tambo + 01 Coca Cola 1 Lt</p>
-                                <svg class="delete" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="#f25c05" d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"/></svg>
-                            </div>
-                        </div>
-                        <div class="cart-item">
-                            <div class="cart-item-left">
-                                <div class="counter">
-                                    <p>-</p>
-                                    <p>1</p>
-                                    <p>+</p>
-                                </div>
-                                <div class="price">
-                                    S/. 51.80
-                                </div>
-                            </div>
-                            <div class="cart-item-right">
-                                <p class="product-title">Combo 02 Hamburguesa Parrillera Tambo + 01 Coca Cola 1 Lt</p>
-                                <svg class="delete" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="#f25c05" d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"/></svg>
+                                <svg class="cart-item-remove" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path fill="#f25c05" d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"/></svg>
                             </div>
                         </div>
                         <div class="cart-total">
                             <p>Total</p>
-                            <p>S/. 103.60</p>
+                            <p>S/. <strong id="cart-total" class="">00.00</strong></p>
                         </div>
                         <button class="button"><a href="{{route('PlaceOrder')}}">Ir a Pagar</a></button>
                     </div>
-                </div>
             </div>
         </div>
         <div class="search-bar none" id="search_bar">
@@ -130,10 +100,28 @@
             <button class="button">Ir a Pagar</button>
         </div>
     </header>
-
+    {{-- <div id="cart" class="cart">
+        <div class="sin-productos">
+          <p style="text-align:center;">Sin productos elegidos</p>
+        </div>
+        <!--cart total -->
+        <div class="cart-total-container d-flex justify-content-around text-capitalize mt-5">
+          <h5>total</h5>
+          <h5> $ <strong id="cart-total" class="font-weight-bold">00.00</strong> </h5>
+        </div>
+        <!--end cart total -->
+        <!-- cart buttons -->
+        <div class="cart-buttons-container mt-3 d-flex justify-content-between">
+          <a href="" id="clear-cart" class="btn btn-outline-secondary btn-black text-uppercase">clear cart</a>
+          <a href="" class="btn btn-outline-secondary text-uppercase btn-pink">checkout</a>
+        </div>
+        <!--end of  cart buttons -->
+        <!--  -->
+    </div> --}}
     <!--Inicio html en otra hoja-->
 
     @yield('content');
+    @routes
     <!-- Fin html -->
 
     <footer>
@@ -193,6 +181,8 @@
             </li>
         </ul>
     </footer>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('../resources/js/app.js')}}"></script>
 </body>
 </html>

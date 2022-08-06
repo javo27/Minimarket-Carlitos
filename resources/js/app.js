@@ -1,4 +1,4 @@
-//import './bootstrap';
+// import './bootstrap';
 function opencloseMobileMenu() {
     var links = document.getElementById('links');
     if (links.classList.contains('none')) {
@@ -29,3 +29,4 @@ function opencloseSearchBar() {
         links.classList.add('none');
     }
 }
+

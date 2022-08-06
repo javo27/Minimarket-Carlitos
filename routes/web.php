@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelperController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PedidoController;
@@ -22,9 +23,16 @@ Route::controller(ProductoController::class)->group(function(){
     Route::get('productos', 'index')->name("AllProducts");
     Route::get('productos/{id}','mostrarProducto')->name("OneProduct");
     Route::get('productos/categoria/{id}','mostrarProductosCategoria')->name("CategoryProducts");
+    Route::get('productos/search/show','mostrarProductosNombre')->name("SimilarNameProducts");
 });
 
 Route::get('pedido', PedidoController::class)->name("PlaceOrder");
+
+Route::controller(HelperController::class)->group(function(){
+    Route::get('helper', 'volverVistaProductos')->name("BackProducts");
+});
+
+
 
 // Redirigir rutas
 // Route::redirect('productos','pedido');
