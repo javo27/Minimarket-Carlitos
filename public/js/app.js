@@ -1,11 +1,118 @@
+function opencloseMobileMenu() {
+    var links = document.getElementById('links');
+    if (links.classList.contains('none')) {
+        links.classList.add('flex');
+        links.classList.remove('none');
+    } else {
+        links.classList.remove('flex');
+        links.classList.add('none');
+    }
+}
+function opencloseCartPopup() {
+    var links = document.getElementById('cart_popup');
+    if (links.classList.contains('none')) {
+        links.classList.add('block');
+        links.classList.remove('none');
+    } else {
+        links.classList.remove('block');
+        links.classList.add('none');
+    }
+}
+function opencloseSearchBar() {
+    var links = document.getElementById('search_bar');
+    if (links.classList.contains('none')) {
+        links.classList.add('flex');
+        links.classList.remove('none');
+    } else {
+        links.classList.remove('flex');
+        links.classList.add('none');
+    }
+}
 
-var listaProductosCarrito = [];
+const cerrarModal = document.querySelectorAll(".closeModal");
+cerrarModal.forEach(function(cerrar){
+    cerrar.addEventListener('click',function(evt){
+        evt.target.parentElement.parentElement.classList.toggle("hide");
+    })
+});
+
+const abritModal = document.querySelectorAll(".abrir-modal");
+abritModal.forEach(function(abrir){
+    abrir.addEventListener('click',function(evt){
+        evt.target.parentElement.previousElementSibling.classList.toggle("hide");
+    })
+});
+
+const abrirCarrito = document.querySelector(".cartOpen");
+const carritoDropdown = document.querySelector(".dropdown-menu");
+abrirCarrito.addEventListener('click',function(){
+    carritoDropdown.classList.toggle("hide");
+});
+
+const openSections = document.querySelectorAll(".openSection");
+const guardarDatos = document.querySelectorAll(".btn-guardar");
+openSections.forEach(function(open){
+    open.addEventListener('click',function(evt){
+        evt.target.parentElement.parentElement.nextElementSibling.classList.toggle("hide");
+    })
+});
+guardarDatos.forEach(function(open){
+    open.addEventListener('click',function(evt){
+        evt.target.parentElement.classList.add("hide");
+    })
+});
+
+function mostrarMetodoEntrega(opt){
+    let domicilio = document.querySelector(".domicilio-info");
+    let tienda = document.querySelector(".tienda-info");
+    if(opt===0){  
+        domicilio.classList.toggle("hide");
+        if(!tienda.classList.contains("hide")){
+            tienda.classList.toggle("hide");
+        }
+    }
+    else{
+        tienda.classList.toggle("hide");
+        if(!domicilio.classList.contains("hide")){
+            domicilio.classList.toggle("hide");
+        }
+    }
+}
+
+function mostrarMetodoPago(opt){
+    let boleta = document.querySelector(".boleta-container");
+    let factura = document.querySelector(".factura-container");
+    if(opt===0){  
+        boleta.classList.toggle("hide");
+        if(!factura.classList.contains("hide")){
+            factura.classList.toggle("hide");
+        }
+    }
+    else{
+        factura.classList.toggle("hide");
+        if(!boleta.classList.contains("hide")){
+            boleta.classList.toggle("hide");
+        }
+    }
+}
+function mostrarFormaPago(opt){
+    let tarjeta = document.querySelector(".tarjeta-container");
+    if(opt===0){  
+        if(!tarjeta.classList.contains("hide")){
+            tarjeta.classList.toggle("hide");
+        }
+    }
+    else{
+        tarjeta.classList.toggle("hide");
+    }
+}
+
 
 // (function(){
 //     llenarListaCarrito();
 // })();
 
-
+/*
 const agregarCarrito = document.querySelectorAll(".agregar-carrito");
 agregarCarrito.forEach(item => {
     item.addEventListener('click', function(evt){
@@ -73,7 +180,7 @@ agregarCarrito.forEach(item => {
                     // if (data.errors != "" && data.errors != null) {
                     // }
                 }
-            })*/
+            })
         }
     });
 });
@@ -134,4 +241,4 @@ function btnLimpiar(){
         document.querySelector("#item-count").textContent = "0";
         //document.querySelector(".item-total").textContent = "00.00";
     }
-}
+}*/

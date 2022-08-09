@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
    
-    <link rel="stylesheet" href="{{asset('../resources/css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 </head>
 <body>
     <header>
@@ -37,7 +37,7 @@
                 </svg>
             </div>
             <a class="logo" href="{{route('Main')}}">
-                <img width="130px" src="{{asset('../resources/img/Logo.png')}}" alt="Minimarket Carlitos">
+                <img width="130px" src="{{asset('/img/Logo.png')}}" alt="Minimarket Carlitos">
             </a>
             <div class="links none" id="links">
                 <a href="{{route('AllProducts')}}">Productos</a>
@@ -60,7 +60,7 @@
                     <p class="mb-0 text-capitalize"><span id="item-count">0 </span> items - $<span class="item-total">00.00</span></p>
                 </div> --}}
                 <div class="cart">
-                    <a onclick="opencloseCartPopup()" href="#">
+                    <!--<a onclick="opencloseCartPopup()" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
                             width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                             <path fill="white"
@@ -91,7 +91,19 @@
                             <p>S/. <strong id="cart-total" class="">00.00</strong></p>
                         </div>
                         <button class="button"><a href="{{route('PlaceOrder')}}">Ir a Pagar</a></button>
-                    </div>
+                    </div> -->
+                    <a id="navbarDropdown" class="cartOpen"
+                       role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                            width="1.5em" height="1.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                            <path fill="white"
+                                d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921z" />
+                            <circle cx="10.5" cy="19.5" r="1.5" fill="white" />
+                            <circle cx="17.5" cy="19.5" r="1.5" fill="white" />
+                        </svg>
+                        <span class="cantidad-cart">{{ \Cart::getTotalQuantity()}}</span>
+                    </a>
             </div>
         </div>
         <div class="search-bar none" id="search_bar">
@@ -100,6 +112,14 @@
             <button class="button">Ir a Pagar</button>
         </div>
     </header>
+    <div class="carrito">
+        <div class="dropdown-menu hide dropdown-menu-right" aria-labelledby="navbarDropdown" >
+            <ul class="list-group">
+                @include('cart.cart-drop')
+            </ul>
+        </div>
+    </div>
+    
     {{-- <div id="cart" class="cart">
         <div class="sin-productos">
           <p style="text-align:center;">Sin productos elegidos</p>
@@ -128,7 +148,7 @@
         <ul class="footer-links">
             <li>
                 <a class="logo" href="{{route('Main')}}">
-                    <img width="130px" src="{{asset('../resources/img/Logo.png')}}" alt="Minimarket Carlitos">
+                    <img width="130px" src="{{asset('/img/Logo.png')}}" alt="Minimarket Carlitos">
                 </a>
             </li>
             <li>
@@ -183,6 +203,6 @@
     </footer>
     <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('../resources/js/app.js')}}"></script>
+    <script src="{{asset('/js/app.js')}}"></script>
 </body>
 </html>

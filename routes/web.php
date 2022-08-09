@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
-
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,11 +26,14 @@ Route::controller(ProductoController::class)->group(function(){
     Route::get('productos/search/show','mostrarProductosNombre')->name("SimilarNameProducts");
 });
 
-Route::get('pedido', PedidoController::class)->name("PlaceOrder");
+Route::get('pedido', [PedidoController::class, 'show'])->name("PlaceOrder");
+Route::post('/send', [PedidoController::class, 'registrar'])->name("SendOrder");
 
-Route::controller(HelperController::class)->group(function(){
-    Route::get('helper', 'volverVistaProductos')->name("BackProducts");
-});
+Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 
 
