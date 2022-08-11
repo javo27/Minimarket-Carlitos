@@ -2,12 +2,22 @@
 @section('title','Productos del Minimarket Carlitos')
 @section('content')
     <main>
+        @if(session()->has('success_msg'))
+        <div class="cartstatus-modal">
+            <div class="content-cartstatus">
+                <span class="closeModal">&times</span>
+                <div class="message">
+                    <p class="status">{{ session()->get('success_msg') }}</p>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="catalogo-titulo">Productos del Minimarket Carlitos</div>
         <div class="catalogo-banner">
             <img src="{{asset('/img/catalogo-banner.png')}}" alt="Catalogo Minimarket Carlitos">
         </div>
         <div class="catalogo-buscar">
-            <form action="{{route('SimilarNameProducts')}}">
+            <form class="d-flex" action="{{route('SimilarNameProducts')}}">
                 <input type="text" name="nombre-buscar" placeholder="Search..." />
                 <button type="submit" class="button">Buscar</button>
             </form>
@@ -24,7 +34,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="catalogo-container">
+            <div class="catalogo-container-1">
                 @foreach($productos as $producto)
                 {{-- {{$imagenurl='/imagenes/'.$producto->imagen}} --}} 
                 <div class="producto-modal hide">
@@ -44,6 +54,7 @@
                                     <input type="hidden" value="{{ $producto->nomProducto }}" id="name" name="name">
                                     <input type="hidden" value="{{ $producto->precio }}" id="price" name="price">
                                     <input type="hidden" value="{{ $producto->imagen }}" id="img" name="img">
+                                    <input type="hidden" value="{{$producto->stock}}" id="stock" name="stock">
                                     <div>
                                         <label for="">Elija la Cantidad: </label>
                                         <input class="input-cantidad" type="number" value="1" min="1" max="{{ $producto->stock }}" id="quantity" name="quantity">

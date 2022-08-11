@@ -52,8 +52,8 @@ abrirCarrito.addEventListener('click',function(){
 const openSections = document.querySelectorAll(".openSection");
 const guardarDatos = document.querySelectorAll(".btn-guardar");
 openSections.forEach(function(open){
-    open.addEventListener('click',function(evt){
-        evt.target.parentElement.parentElement.nextElementSibling.classList.toggle("hide");
+    open.addEventListener('click',function(){
+        open.parentElement.nextElementSibling.classList.toggle("hide");
     })
 });
 guardarDatos.forEach(function(open){
@@ -106,6 +106,244 @@ function mostrarFormaPago(opt){
         tarjeta.classList.toggle("hide");
     }
 }
+
+const inputObligatorios = document.querySelectorAll(".obligatorio");
+const camposObligatorios = document.querySelectorAll(".campo-oligatorio");
+const habilitarBtnconfirmacion = document.querySelector(".habilitar-confirmacion");
+inputObligatorios.forEach(input=>{
+    input.addEventListener('change',function(){
+        if(input.value===""){
+            if(input.nextElementSibling.classList.contains("hide"))
+                input.nextElementSibling.classList.remove("hide");
+        }
+        else{
+            if(!input.nextElementSibling.classList.contains("hide"))
+                input.nextElementSibling.classList.add("hide");
+        }
+            
+    });
+    /*input.addEventListener('click',function(){
+        if(input.value==="")
+            input.nextElementSibling.classList.remove("hide");
+        else{
+            if(!input.nextElementSibling.classList.contains("hide"))
+                input.nextElementSibling.classList.toggle("hide");
+        }
+    });*/
+});
+habilitarBtnconfirmacion.addEventListener('click',function(){
+    //Validar info personal
+    const inputsInfo = document.querySelectorAll(".personal .obligatorio");
+    const obligatoriosInputsInfo = document.querySelectorAll(".personal .campo-oligatorio");
+    let cantidadInfo = 0;
+    for(let i=0;i<inputsInfo.length;i++){
+        if(inputsInfo[i].value===""){
+            if(obligatoriosInputsInfo[i].classList.contains("hide"))
+                obligatoriosInputsInfo[i].classList.toggle("hide");
+            cantidadInfo++;
+        }
+        if(cantidadInfo>0){
+            if(document.querySelector(".personal").classList.contains("hide")){
+                document.querySelector(".personal").classList.remove("hide")
+            }
+        }
+    }
+    const radioEntrega = document.querySelectorAll(".entrega .obligatorio");
+    const inputsdomicilio = document.querySelectorAll(".domicilio .obligatorio");
+    const obligatoriosInputsDomicilio = document.querySelectorAll(".domicilio .campo-oligatorio");
+    const inputsRecojo = document.querySelectorAll(".recojo .obligatorio");
+    const obligatoriosInputsRecojo = document.querySelectorAll(".recojo .campo-oligatorio");
+    let cantidadEntrega = 0;
+    radioEntrega.forEach(function(radio){
+        radio.addEventListener('click',function(){
+            if(radioEntrega[0].checked){
+                if(!radio.parentElement.parentElement.parentElement.children[2].classList.contains("hide")){
+                    obligatoriosInputsRecojo.forEach(function(campo){
+                        if(!campo.classList.contains("hide"))
+                            campo.classList.toggle("hide");
+                    });
+                    radio.parentElement.parentElement.parentElement.children[2].classList.toggle("hide");
+                }
+            }
+            else{
+                if(!radio.parentElement.parentElement.parentElement.children[1].classList.contains("hide")){
+                    obligatoriosInputsDomicilio.forEach(function(campo){
+                        if(!campo.classList.contains("hide"))
+                            campo.classList.toggle("hide");
+                    });
+                    radio.parentElement.parentElement.parentElement.children[1].classList.toggle("hide");
+                }
+            }
+            if(!radioEntrega[0].parentElement.parentElement.children[2].classList.contains("hide")){
+                radioEntrega[0].parentElement.parentElement.children[2].classList.toggle("hide")
+            }
+        });
+    });
+    if(radioEntrega[0].checked){
+        for(let i=0;i<inputsdomicilio.length;i++){
+            if(inputsdomicilio[i].value===""){
+                if(obligatoriosInputsDomicilio[i].classList.contains("hide"))
+                    obligatoriosInputsDomicilio[i].classList.toggle("hide");
+                cantidadEntrega++;
+            }
+            if(cantidadEntrega>0){
+                if(document.querySelector(".domicilio").classList.contains("hide")){
+                    document.querySelector(".domicilio").classList.toggle("hide");
+                }
+            }
+        }
+    }
+    else{
+        if(radioEntrega[1].checked){
+            for(let i=0;i<inputsRecojo.length;i++){
+                if(inputsRecojo[i].value===""){
+                    if(obligatoriosInputsRecojo[i].classList.contains("hide"))
+                        obligatoriosInputsRecojo[i].classList.toggle("hide");
+                    cantidadEntrega++;
+                }
+                if(cantidadEntrega>0){
+                    if(document.querySelector(".recojo").classList.contains("hide")){
+                        document.querySelector(".recojo").classList.toggle("hide");
+                    }
+                }
+            }
+        }
+        else{
+            radioEntrega[0].parentElement.parentElement.children[2].classList.toggle("hide");
+            if(document.querySelector(".entrega").parentElement.classList.contains("hide")){
+                document.querySelector(".entrega").parentElement.classList.toggle("hide");
+            }
+        }
+    } 
+    
+    const radioPago = document.querySelectorAll(".pago .obligatorio");
+    const inputsBoleta = document.querySelectorAll(".boleta .obligatorio");
+    const obligatorioInputsBoleta = document.querySelectorAll(".boleta .campo-oligatorio");
+    const inputsFactura = document.querySelectorAll(".factura .obligatorio");
+    const obligatorioInputsFactura = document.querySelectorAll(".boleta .campo-oligatorio");
+    let cantidadPago =0;
+    radioPago.forEach(function(radio){
+        radio.addEventListener('click',function(){
+            if(radioPago[0].checked){
+                if(!radio.parentElement.parentElement.parentElement.children[2].classList.contains("hide")){
+                    obligatorioInputsFactura.forEach(function(campo){
+                        if(!campo.classList.contains("hide"))
+                            campo.classList.toggle("hide");
+                    });
+                    radio.parentElement.parentElement.parentElement.children[2].classList.toggle("hide");
+                }
+            }
+            else{
+                if(!radio.parentElement.parentElement.parentElement.children[1].classList.contains("hide")){
+                    obligatorioInputsBoleta.forEach(function(campo){
+                        if(!campo.classList.contains("hide"))
+                            campo.classList.toggle("hide");
+                    });
+                    radio.parentElement.parentElement.parentElement.children[1].classList.toggle("hide");
+                }
+            }
+            if(!radioPago[0].parentElement.parentElement.children[2].classList.contains("hide")){
+                radioPago[0].parentElement.parentElement.children[2].classList.toggle("hide")
+            }
+        });
+    });
+    if(radioPago[0].checked){
+        for(let i=0;i<inputsBoleta.length;i++){
+            if(inputsBoleta[i].value===""){
+                if(obligatorioInputsBoleta[i].classList.contains("hide"))
+                    obligatorioInputsBoleta[i].classList.toggle("hide");
+                cantidadPago++;
+            }
+            if(cantidadPago>0){
+                if(document.querySelector(".boleta").classList.contains("hide")){
+                    document.querySelector(".boleta").classList.remove("hide")
+                }
+            }
+        }
+    }
+    else{
+        if(radioPago[1].checked){
+            for(let i=0;i<inputsFactura.length;i++){
+                if(inputsFactura[i].value===""){
+                    if(obligatorioInputsFactura[i].classList.contains("hide"))
+                        obligatorioInputsFactura[i].classList.toggle("hide");
+                    cantidadPago++;
+                }
+                if(cantidadPago>0){
+                    if(document.querySelector(".factura").classList.contains("hide")){
+                        document.querySelector(".factura").classList.remove("hide")
+                    }
+                }
+            }
+        }
+        else{
+            radioPago[0].parentElement.parentElement.children[2].classList.toggle("hide");
+            if(document.querySelector(".pago").parentElement.classList.contains("hide")){
+                document.querySelector(".pago").parentElement.classList.toggle("hide");
+            }
+        }
+    }
+    const radioFormaPago = document.querySelectorAll(".formapago .obligatorio");
+    const inputsTarjeta = document.querySelectorAll(".tarjeta .obligatorio");
+    const obligatorioInputsTarjeta = document.querySelectorAll(".tarjeta .campo-oligatorio");
+    let cantidadTarjeta = 0;
+    radioFormaPago.forEach(function(radio){
+        radio.addEventListener('click',function(){
+            if(radioFormaPago[0].checked){
+                if(!radio.parentElement.parentElement.parentElement.children[1].classList.contains("hide")){
+                    obligatorioInputsTarjeta.forEach(function(campo){
+                        if(!campo.classList.contains("hide"))
+                            campo.classList.toggle("hide");
+                    });
+                    radio.parentElement.parentElement.parentElement.children[1].classList.toggle("hide");
+                }
+            }
+            if(!radioFormaPago[0].parentElement.parentElement.children[2].classList.contains("hide")){
+                radioFormaPago[0].parentElement.parentElement.children[2].classList.toggle("hide")
+            }
+        });
+    });
+    if(radioFormaPago[0].checked){
+    }
+    else{
+        if(radioFormaPago[1].checked){
+            for(let i=0;i<inputsTarjeta.length;i++){
+                if(inputsTarjeta[i].value===""){
+                    if(obligatorioInputsTarjeta[i].classList.contains("hide"))
+                        obligatorioInputsTarjeta[i].classList.toggle("hide");
+                    cantidadTarjeta++;
+                }
+                if(cantidadTarjeta>0){
+                    if(document.querySelector(".tarjeta").classList.contains("hide")){
+                        document.querySelector(".tarjeta").classList.remove("hide")
+                    }
+                }
+            }
+        }
+        else{
+            radioFormaPago[0].parentElement.parentElement.children[2].classList.toggle("hide");
+            if(document.querySelector(".formapago").parentElement.classList.contains("hide")){
+                document.querySelector(".formapago").parentElement.classList.toggle("hide");
+            }
+        }
+    }
+    if(cantidadInfo===0&&cantidadEntrega===0&&cantidadPago===0&&cantidadTarjeta==0){
+        document.querySelector(".btn-confirmacion").disabled = false;
+        document.querySelector(".mensaje-2").classList.toggle("hide");
+        if(!document.querySelector(".mensaje-1").classList.contains("hide")){
+            document.querySelector(".mensaje-1").classList.toggle("hide");
+        }
+    }
+    else{
+        if(!document.querySelector(".mensaje-2").classList.contains("hide")){
+            document.querySelector(".mensaje-2").classList.toggle("hide");
+        }
+        document.querySelector(".mensaje-1").classList.toggle("hide");
+    }
+        
+        
+});
+
 
 
 // (function(){

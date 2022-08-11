@@ -8,11 +8,13 @@ class CartController extends Controller
     public function cart()  {
         $cartCollection = \Cart::getContent();
         //dd($cartCollection);
-        return view('cart.cart')->with(['cartCollection' => $cartCollection]);;
+        //return view('cart.cart')->with(['cartCollection' => $cartCollection]);;
+        return redirect()->route('AllProducts');
     }
     public function remove(Request $request){
         \Cart::remove($request->id);
-        return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
+        //return redirect()->route('cart.index')->with('success_msg', 'Producto Eliminado del Carrito!');
+        return redirect()->route('AllProducts')->with('success_msg', 'Producto Eliminado del Carrito!');
     }
 
     public function add(Request$request){
@@ -21,9 +23,11 @@ class CartController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
-            'image' => $request->img
+            'image' => $request->img,
+            'stock' => $request->stock
         ));
-        return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a sú Carrito!');
+        //return redirect()->route('cart.index')->with('success_msg', 'Producto Agregado al Carrito!');
+        return redirect()->route('AllProducts')->with('success_msg', 'Producto Agregado al Carrito!');
     }
 
     public function update(Request $request){
@@ -34,12 +38,14 @@ class CartController extends Controller
                     'value' => $request->quantity
                 ),
         ));
-        return redirect()->route('cart.index')->with('success_msg', 'Cart is Updated!');
+        //return redirect()->route('cart.index')->with('success_msg', 'Carrito actualizado!');
+        return redirect()->route('AllProducts')->with('success_msg', 'Carrito actualizado!');
     }
 
     public function clear(){
         \Cart::clear();
-        return redirect()->route('cart.index')->with('success_msg', 'Car is cleared!');
+        //return redirect()->route('cart.index')->with('success_msg', 'Carrito limpiado!');
+        return redirect()->route('AllProducts')->with('success_msg', 'Carrito limpiado!');
     }
 
 }

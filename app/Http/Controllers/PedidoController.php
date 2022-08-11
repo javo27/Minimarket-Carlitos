@@ -46,7 +46,9 @@ class PedidoController extends Controller
         return redirect()->route('Main');
     }
     private function llenarDetalles($idPedido){
+        $api = new Api();
         foreach(\Cart::getContent() as $item){
+            $api->actualizarStock($item->id,$item->quantity);
             $detalle = DetallesPedido::create([
                 'idPedido' => $idPedido,
                 'idProducto'=> $item->id,

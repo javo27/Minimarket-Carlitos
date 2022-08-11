@@ -12,15 +12,20 @@
                         <h4>Datos Personales</h4>
                         <span class="openSection"><img src="{{asset('/img/ordenar-abajo.png')}}" alt=""></span>
                     </div>
-                    <div class="contenido hide">
+                    <div class="contenido hide personal">
                         <label for="nombres">Nombres:</label>
-                        <input type="text" name="nombres" id="nombres" placeholder="Ingrese sus Nombres">
+                        <input class="obligatorio" type="text" name="nombres" id="nombres" placeholder="Ingrese sus Nombres">
+                        <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         <label for="apellidos">Apellidos:</label>
-                        <input type="text" name="apellidos" id="apellidos" placeholder="Ingrese sus Apellidos">
+                        <input class="obligatorio" type="text" name="apellidos" id="apellidos" placeholder="Ingrese sus Apellidos">
+                        <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         <label for="correo">Correo:</label>
-                        <input type="email" name="correo" id="correo" placeholder="Ingrese sus Correo electronico">
+                        <input class="obligatorio" type="email" name="correo" id="correo" placeholder="Ingrese sus Correo electronico">
+                        <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         <label for="telefono">Telefono:</label>
-                        <input type="tel" name="telefono" id="telefono" placeholder="Ingrese su numero telefonico">
+                        <input class="obligatorio" type="text" name="telefono" id="telefono" maxlength="9" placeholder="Ingrese su numero telefonico" pattern="[0-9]+" maxlength="9" minlength="9">
+                        <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
+                        <label class="ultimo"></label>
                         <a class="btn-guardar">Guardar Datos</a>
                     </div>
                 </div>
@@ -54,28 +59,34 @@
                         <span class="openSection"><img src="{{asset('/img/ordenar-abajo.png')}}" alt=""></span>
                     </div>
                     <div class="contenido hide">
-                        <div class="juntar">
+                        <div class="juntar entrega">
                             <div class="juntar">
-                                <input onchange="mostrarMetodoEntrega(0)" type="radio" name="entrega" value="delivery">
+                                <input class="obligatorio" onchange="mostrarMetodoEntrega(0)" type="radio" name="entrega" value="delivery">
                                 <label for="entrega">Envio a Domicilio</label>
                             </div>
                             <div class="juntar">
-                                <input onchange="mostrarMetodoEntrega(1)" type="radio" name="entrega" value="recojotienda">
+                                <input class="obligatorio" onchange="mostrarMetodoEntrega(1)" type="radio" name="entrega" value="recojotienda">
                                 <label for="entrega">Recojo en Tienda</label>
                             </div>
+                            <p class="campo-oligatorio hide">*Debe seleccionar una opcion</p>
                         </div>
-                        <div class="domicilio-info hide">
+                        <div class="domicilio-info hide domicilio">
                             <label for="direccion">Direccion</label>
-                            <input type="text" name="direccion" id="direccion" placeholder="Ingrese su direccion">
+                            <input class="obligatorio" type="text" name="direccion" id="direccion" placeholder="Ingrese su direccion">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                             <label for="referencia">Referencia:</label>
-                            <input type="text" name="referencia" id="referencia" placeholder="Ingrese referencia a su direccion">
+                            <input class="obligatorio" type="text" name="referencia" id="referencia" placeholder="Ingrese referencia a su direccion">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         </div>
-                        <div class="tienda-info hide">
+                        <div class="tienda-info hide recojo">
                             <label for="fechaRecojo">Fecha de Recojo</label>
-                            <input type="date" name="fechaRecojo" id="fechaRecojo">
+                            <input class="obligatorio" type="date" name="fechaRecojo" id="fechaRecojo">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                             <label for="horaRecojo">Hora de Recojo</label>
-                            <input type="time" name="horaRecojo" id="horaRecojo">
+                            <input class="obligatorio" type="time" name="horaRecojo" id="horaRecojo">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         </div>
+                        <label class="ultimo"></label>
                         <a class="btn-guardar">Guardar</a>
                     </div>
                 </div>
@@ -85,36 +96,43 @@
                        <span class="openSection"><img src="{{asset('/img/ordenar-abajo.png')}}" alt=""></span>
                     </div>
                     <div class="contenido hide">
-                        <div class="juntar">
+                        <div class="juntar pago">
                             <div class="juntar">
-                                <input onchange="mostrarMetodoPago(0)" type="radio" name="metodopago" value="boleta">
+                                <input class="obligatorio" onchange="mostrarMetodoPago(0)" type="radio" name="metodopago" value="boleta">
                                 <label for="boleta">Pago con Boleta</label>
                             </div>
                             <div class="juntar">
-                                <input onchange="mostrarMetodoPago(1)" type="radio" name="metodopago" value="factura">
+                                <input class="obligatorio" onchange="mostrarMetodoPago(1)" type="radio" name="metodopago" value="factura">
                                 <label for="factura">Pago con Factura</label>
                             </div>
+                            <p class="campo-oligatorio hide">*Debe seleccionar una opcion</p>
                         </div>
                         
-                        <div class="boleta-container hide">
+                        <div class="boleta-container hide boleta">
                             <label for="documentoidentidad">Tipo de documento de identidad</label>
-                            <select name="documentoidentidad" id="documentoidentidad">
-                                <option unselected>Seleccione un tipo de documento</option>
+                            <select class="obligatorio" name="documentoidentidad" id="documentoidentidad">
+                                <option value="" unselected>Seleccione un tipo de documento</option>
                                 <option value="dni">DNI</option>
                                 <option value="carnet">Carnet de extranjeria</option>
                                 <option value="pasaporte">Pasaporte</option>
                             </select>
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                             <label for="numerodocumento">Numero de Documento:</label>
-                            <input type="number" name="numerodocumento" id="numerodocumento" placeholder="Ingrese el numero de documento">
+                            <input class="obligatorio" type="number" name="numerodocumento" id="numerodocumento" placeholder="Ingrese el numero de documento">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         </div>
-                        <div class="factura-container hide">
+                        <div class="factura-container hide factura">
                             <label for="direccion-factura">Direccion de la Facturacion</label>
-                            <input type="text" name="direccion-factura" id="direccion-factura" placeholder="Ingrese la Direccion de Facturacion">
+                            <input class="obligatorio" type="text" name="direccion-factura" id="direccion-factura" placeholder="Ingrese la Direccion de Facturacion">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                             <label for="ruc">RUC:</label>
-                            <input type="number" name="ruc" id="ruc" placeholder="Ingrese su RUC">
+                            <input class="obligatorio" type="number" name="ruc" id="ruc" placeholder="Ingrese su RUC">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                             <label for="razonsocial">Razon Social o Nombre</label>
-                            <input type="text" name="razonsocial" id="razonsocial" placeholder="Ingrese razon social o nombre">
+                            <input class="obligatorio" type="text" name="razonsocial" id="razonsocial" placeholder="Ingrese razon social o nombre">
+                            <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                         </div>
+                        <label class="ultimo"></label>
                         <a class="btn-guardar">Guardar</a>
                     </div>
                 </div>
@@ -124,35 +142,38 @@
                         <span class="openSection"><img src="{{asset('/img/ordenar-abajo.png')}}" alt=""></span>
                     </div>
                     <div class="contenido hide">
-                        <div class="juntar">
+                        <div class="juntar formapago">
                             <div class="juntar">
-                                <input onchange="mostrarFormaPago(0)" type="radio" name="formapago" id="efectivo" value="efectivo">
+                                <input class="obligatorio" onchange="mostrarFormaPago(0)" type="radio" name="formapago" id="efectivo" value="efectivo">
                                 <label for="efectivo">Efectivo</label>
                             </div>
                             <div class="juntar">
-                                <input onchange="mostrarFormaPago(1)" type="radio" name="formapago" id="tarjeta" value="tarjeta">
+                                <input class="obligatorio" onchange="mostrarFormaPago(1)" type="radio" name="formapago" id="tarjeta" value="tarjeta">
                                 <label for="tarjeta">Tarjeta</label>
                             </div>
+                            <p class="campo-oligatorio hide">*Debe seleccionar una opcion</p>
                         </div>
-                        <div class="tarjeta-container hide">
+                        <div class="tarjeta-container hide tarjeta">
                             <p>Tarjetas de credito o debito</p>
                             <img src="/img/Tarjetas.png" alt="tarjetas aceptadas">
                             <div class="columnas-2">
                                 <div class="">
                                     <label for="nombretitular">Nombre del titular:</label>
-                                    <input type="text" name="nombretitular" id="nombretitular" placeholder="Ingrese nombre del titular">
+                                    <input class="obligatorio" type="text" name="nombretitular" id="nombretitular" placeholder="Ingrese nombre del titular">
+                                    <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                                 </div>
                                 <div class="">
                                     <label for="numerotarjeta">Numero de Tarjeta:</label>
-                                    <input type="number" name="numerotarjeta" id="numerotarjeta" placeholder="Ingrese numero de tarjeta">
+                                    <input class="obligatorio" type="number" name="numerotarjeta" id="numerotarjeta" placeholder="Ingrese numero de tarjeta">
+                                    <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                                 </div>
                             </div>
                             <div class="columnas-2">
                                 <div class="">
                                     <label for="">Fecha de expiracion</label>
                                     <div class="juntar">
-                                        <select name="mes" id="mes">
-                                            <option>Mes</option>
+                                        <select class="obligatorio" name="mes" id="mes">
+                                            <option value="">Mes</option>
                                             <option value="0">Enero</option>
                                             <option value="1">Febrero</option>
                                             <option value="2">Marzo</option>
@@ -166,19 +187,29 @@
                                             <option value="10">Noviembre</option>
                                             <option value="11">Diciembre</option>
                                         </select>
-                                        <input type="number" name="anio" id="anio" placeholder="Año">
+                                        <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
+                                        <input class="obligatorio" type="number" name="anio" id="anio" placeholder="Año">
+                                        <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                                     </div>
                                 </div>
                                 <div class="">
                                     <label for="codigo">Codigo de seguridad</label>
-                                    <input type="number" name="codigo" id="codigo" placeholder="3 Digitos">
+                                    <input class="obligatorio" type="number" name="codigo" id="codigo" placeholder="3 Digitos">
+                                    <p class="campo-oligatorio hide">*Este campo es obligatorio</p>
                                 </div>
                             </div>
                         </div>
+                        <label class="ultimo"></label>
                         <a class="btn-guardar">Guardar</a>
                     </div>
                 </div>
-                <button class="btn-confirmacion">Confirmar pedido</button>
+                <a class="habilitar-confirmacion btn btn-terciario">Validar Formulario</a>
+                <div class="mensaje-confirmacion">
+                    <button class="btn-confirmacion" disabled="true">Confirmar pedido</button>
+                    <p class="mensaje-1 hide">Debe llenar todos los campos <br> para poder Confirmar el pedido</p>
+                    <p class="mensaje-2 hide">Ya puede Confirmar el pedido</p>
+                </div>
+                
               </form>
         </div>
         <div class="resumen-pedido">
@@ -191,24 +222,24 @@
                       <div class="escogido-info">
                           <p>{{$item->name}}</p>
                           <p>Cantidad: {{$item->quantity}}</p>
-                          <p>S/. <span class="precio-producto">${{ \Cart::get($item->id)->getPriceSum() }}</span></p>
+                          <p>S/. <span class="precio-producto">{{ \Cart::get($item->id)->getPriceSum() }}</span></p>
                       </div>
                     </div>
-                    <div class="detalle-acciones">
-                      <form action="{{ route('cart.update') }}" method="POST">
-                          {{ csrf_field() }}
-                          <div class="form-group row">
-                              <input type="hidden" value="{{ $item->id}}" id="id" name="id">
-                              <input type="number" class="form-control form-control-sm" value="{{ $item->quantity }}"
-                                      id="quantity" name="quantity" style="width: 70px; margin-right: 10px;">
-                              <button class="btn btn-secondary btn-sm" style="margin-right: 25px;">Editar</button>
-                          </div>
-                      </form>
-                      <form action="{{ route('cart.remove') }}" method="POST">
-                          {{ csrf_field() }}
-                          <input type="hidden" value="{{ $item->id }}" id="id" name="id">
-                          <button class="btn btn-dark" style="margin-right: 10px;">Eliminar</button>
-                      </form>
+                    <div class="detalle-acciones resumen">
+                        <form class="detalle-acciones" action="{{ route('cart.update') }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="form-group row">
+                                <input type="hidden" value="{{ $item->id}}" id="id" name="id">
+                                <input type="number" class="form-control form-control-sm" value="{{ $item->quantity }}"
+                                        id="quantity" name="quantity" style="width: 40px; margin-right: 10px;">
+                                <button class="btn btn-secondary btn-sm"><img src="{{asset('/img/editar.png')}}" alt="editar"></button>
+                            </div>
+                        </form>
+                        <form class="detalle-acciones" action="{{ route('cart.remove') }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" value="{{ $item->id }}" id="id" name="id">
+                            <button class="btn btn-dark btn-sm"><img src="{{asset('/img/basura.png')}}" alt="eliminar"></button>
+                        </form>
                     </div>
                 </li>
                 <hr>
